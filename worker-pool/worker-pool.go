@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"runtime/debug"
 	"sync"
 
@@ -72,7 +73,7 @@ func worker(ctx context.Context, jobsChan <-chan Job) error {
 				return job()
 			}()
 			if err != nil {
-				return err
+				slog.Error(err.Error())
 			}
 		}
 	}
